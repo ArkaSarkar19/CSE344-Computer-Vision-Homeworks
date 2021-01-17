@@ -1,0 +1,5 @@
+Answer any one (1) of the following:
+
+Q1) How many minimum values are required to form a unique 3D bounding box in our 3D world (not image). Please also give the details of how you arrive at the particular answer. [Correct answer: 0.5; Explanation: 0.5]
+Q2) Develop an algorithm to compute the number of objects present in a binary image, like the attached one. 
+[Algorithm Design: 0.5; Code: 0.5] [Avoid predefined functions like bwconncomp of matlab]
