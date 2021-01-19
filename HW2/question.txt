@@ -1,0 +1,5 @@
+Q) Use the following assumptions to select the appropriate part as your foreground when you apply Otsu's algorithm on an image:
+1) Object will be present at the center of the image.
+2) Boundary pixels are likely to be the background. 
+
+[0.5 for the details on how you are using these assumptions; 0.5 for the results] Show the results as they were shown in the lecture. Foreground pixels should be shown using original color values, and background pixels should be shown using the blue color.
