@@ -1,0 +1,12 @@
+Answer any one of the following:
+
+1) Collect two videos: one with a mostly static object and another with a mostly dynamic object. Subtract Mean, Median and Mode Frames from each of the frames to perform background subtraction. 
+[0.25 for collecting/making good videos; 
+0.45 for computing the mean, median, mode frames; 
+0.3 for successfully performing the background subtraction using the three approaches] 
+
+2) Compute saliency map for any color image using both color and spatial distances of the pixels as discussed in the class. 
+
+Trust me these homeworks will be very beneficial for you in this course. These will serve as foundations for what you are going to build in the future. 
+
+As requested, attaching one mostly dynamic video as a sample.
