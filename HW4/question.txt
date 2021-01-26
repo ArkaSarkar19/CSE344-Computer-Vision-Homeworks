@@ -1,0 +1,20 @@
+Answer any one (1) of the following:
+
+1)  In the attached binary mask obtained for the RGB image (also attached), some connected components are object components and some are not. Using the following steps, select the only the object components to localize the object:
+a) Obtain the largest connected component, which we consider as one of the object components any way.  
+b) Compute euclidean distance of the largest component with all the components (including the largest, for which the distance is 0) in the following domain:
+[mean Red, mean Green, mean Blue, mean x, mean y] of the components
+c) To find weighted distances, divide these distances by the number of pixels in the component from which you have computed the above distance of the largest component. 
+d) Bring the weighted distnces to (0,1) range by dividing them with their maximum. Apply Otsu's algorithm. The connected components below the Otsu's threshold will be the final object components. Show the mask having only the object components.
+e) Use the obtained object components to localize the object. Show the localization in the image. 
+
+[0.2 for each part]
+
+2) Obtain a global feature descriptor for an image through Spatial Pyramid Pooling (SPP). You may use the same RGB image of the bird. [Note: Resize the image to 240x240 for ease in dividing]. You can do SPP in the following way:  
+a) Divide the image into 4, 9,16, and 25 parts. So, we will have 54 parts of the image. 
+b) Find statistics like mean and standard deviation in each channel of the image part. So, every image part now has 6 values: 3 means & 3 standard deviations, to act as a 6-dimensional feature vector for that part.  
+c) Concatenate all these 54 feature vectors to form 54*6=324 dimensional gloabal feature vector for the image. 
+
+ [0.25 + 0.5 + 0.25] 
+
+Attaching pictorial description of SPP as a pdf. 
