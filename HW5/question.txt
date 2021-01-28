@@ -1,0 +1,3 @@
+Use either the attached matrix or the attached real-world image for solving one (1) of the questions below. Make 4 patches for the image. 
+1)  Obtain LBP-based image level feature 
+2)  Obtain HOG-based image level feature
