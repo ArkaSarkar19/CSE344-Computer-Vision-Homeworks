@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[98]:
+# In[152]:
 
 
 import numpy as np
@@ -16,7 +16,7 @@ from tqdm import tqdm
 # 
 # We try to extract binary patterns around a concerned pixel based whether neighbors are greater or smaller than a particular threshold. The threshold is usually the intensity value of the concerned pixel itself. These binary patterns provide us decimal numbers, whose frequencies are computed in a patch to form a hostogram for the patch. 
 
-# In[99]:
+# In[153]:
 
 
 image = cv2.imread('straw.png')
@@ -26,7 +26,7 @@ plt.imshow(image)
 plt.show()
 
 
-# In[100]:
+# In[154]:
 
 
 def calculateLbpPixel(image, x,y):
@@ -83,30 +83,65 @@ def calculateLbpPixel(image, x,y):
     return val
 
 
-# In[101]:
+# In[155]:
 
 
 print(calculateLbpPixel(image,52,200))
 
 
-# In[102]:
+# In[156]:
 
 
-m,n = image.shape
-pad_image = np.zeros((m+2,n+2))
-pad_image[1:m+1, 1:n+1] = image
-result = np.zeros((m,n))
-for i in range(1, m+1):
-    for j in range(1,n+1):
-        result[i-1,j-1] = calculateLbpPixel(pad_image, i,j)
+def LBP_cell_hist(image):
+    m,n = image.shape
+    pad_image = np.zeros((m+2,n+2))
+    pad_image[1:m+1, 1:n+1] = image
+    result = np.zeros((m,n))
+    
+    hist = np.array([i for i in range(256)])
+
+    for i in range(1, m+1):
+        for j in range(1,n+1):
+            result[i-1,j-1] = calculateLbpPixel(pad_image, i,j)
+            hist[int(result[i-1,j-1])]+=1
+    return result,hist
+    
 
 
-# In[103]:
+# In[157]:
+
+
+def generate_LBP_hist(image, ratio = 0.25, plot = False):
+    m,n = image.shape
+    
+    LBP_hist = np.array([])
+    
+    for i in range(0,m, int(m*ratio)):
+        for j in range(0,n, int(n*ratio)):
+            
+            patch = image[i : i+int(m*ratio),j : j+int(n*ratio)]
+            patch_hist,hist = LBP_cell_hist(patch)
+            if(plot):
+                fig = plt.figure(figsize = (10,5))
+#                 plt.bar( hist)
+#                 plt.show()
+                plt.hist(patch_hist.ravel(),256,[0,256]) 
+                plt.show() 
+            LBP_hist = np.concatenate((LBP_hist,hist))
+    return LBP_hist
+
+
+# In[158]:
+
+
+LBP_hist = generate_LBP_hist(image, ratio = 0.5, plot = True)
+
+
+# In[159]:
 
 
 print("Image-Level LBP Feature")
-plt.imshow(result)
-plt.show()
+print(LBP_hist)
 
 
 # 
@@ -116,7 +151,7 @@ plt.show()
 # For a pixel in a patch, based on the proximity of the gradient's direction with the two key angles between which the direction lies, its magnitude is shared by the bins of the two angles. <br>
 # When we share magnitudes of each pixel in the patch this way and acculmulate these magnitudes for the bins, the result is called HOG feature.  <br>
 
-# In[104]:
+# In[160]:
 
 
 image = cv2.imread('straw.png')
@@ -126,7 +161,7 @@ plt.imshow(image)
 plt.show()
 
 
-# In[105]:
+# In[161]:
 
 
 def get_gradients(image):
@@ -168,16 +203,17 @@ def get_gradients(image):
     
 
 
-# In[106]:
+# In[162]:
 
 
 def HOG_cell_histogram(cell_direction, cell_magnitude, hist_bins):
     HOG_cell_hist = np.zeros(shape=(hist_bins.size))
-    cell_size = cell_direction.shape[0]
+    cell_size_x, cell_size_y = cell_direction.shape
+    
     bins_gaps = abs(hist_bins[0] - hist_bins[1])
     
-    for row_idx in range(cell_size):
-        for col_idx in range(cell_size):
+    for row_idx in range(cell_size_x):
+        for col_idx in range(cell_size_y):
             curr_direction = cell_direction[row_idx, col_idx]
             curr_magnitude = cell_magnitude[row_idx, col_idx]
     
@@ -201,25 +237,25 @@ def HOG_cell_histogram(cell_direction, cell_magnitude, hist_bins):
     return HOG_cell_hist
 
 
-# In[107]:
+# In[163]:
 
 
-def generate_HOG(mag, theta, image, patch_size = 8, plot = False):
+def generate_HOG(mag, theta, image, ratio = 0.25, plot = False):
         
     m,n = image.shape
     
     bins = np.array([-135, -90,-45, 0, 45, 90, 135, 180])
     HOG_hist = np.array([])
     
-    for i in range(0,m, patch_size):
-        for j in range(0,n, patch_size):
+    for i in range(0,m, int(m*ratio)):
+        for j in range(0,n, int(n*ratio)):
             
-            curr_mag = mag[i : i+patch_size,j : j+patch_size]
-            curr_direc = theta[i : i+patch_size,j : j+patch_size]
+            curr_mag = mag[i : i+int(m*ratio),j : j+int(n*ratio)]
+            curr_direc = theta[i : i+int(m*ratio),j : j+int(n*ratio)]
             bins = np.array([-135, -90,-45, 0, 45, 90, 135, 180])
             hist = HOG_cell_histogram(curr_direc, curr_mag, bins)
             if(plot):
-                fig = plt.figure(figsize = (2,2))
+                fig = plt.figure()
                 ax = fig.add_axes([0,0,1,1])
                 x_axis = ["-135", "-90","-45", "0", "45", "90", "135", "180"]
                 ax.bar(x_axis,hist)
@@ -229,25 +265,25 @@ def generate_HOG(mag, theta, image, patch_size = 8, plot = False):
     return HOG_hist
 
 
-# In[108]:
+# In[164]:
 
 
 mag, theta = get_gradients(image)
 
 
-# In[109]:
+# In[165]:
 
 
-HOG_hist = generate_HOG(mag,theta, image, patch_size=16)
+HOG_hist = generate_HOG(mag,theta, image, ratio=0.5, plot = True)
 
 
-# In[110]:
+# In[166]:
 
 
 HOG_hist.shape
 
 
-# In[111]:
+# In[167]:
 
 
 print("The HOG vector is :", HOG_hist)
