@@ -1,0 +1,7 @@
+Perform the following on the attached image
+
+Q1) Obtain foreground and background likelihood maps using one foreground patch and one background patch, respectively. Use histogram based method, where histogram of the patch serves as the required likelihood distribution of the intensities, which can be translated to the spatial domain based on the intensity values. [0.7 marks] 
+Q2) Compute the saliency map by combining the two maps obtained above as discussed in the class, that is (FG + (1-BG))/2. [0.3 marks]
+
+Paste the three maps (FG likelihood map, BG likelihood map, and saliency map) and the code in a single pdf file. 
+ NOTE: There should be only 1 pdf file [Name_RollNo.pdf] in your submission.
