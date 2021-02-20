@@ -1,0 +1,28 @@
+Image :
+
+1 1 9
+1 1 9
+9 9 9
+
+Data:
+R G B
+1  1  1
+1  0  1
+0  1  1
+9  9  8
+9  9  9
+8  9  8
+
+Marks distribution:
+Q1 (0.3)
+Q2 (0.2)
+Q3 (0.5)
+
+
+In answers to the questions just report your answers. You should upload your calculations in the pdf file asked.  
+The name, username and photo associated with your Google account will be recorded when you upload files and submit this form.
+
+
+Q1) Let's say only the central pixel is labeled as the sole foreground labeled pixel and only the right-bottom corner pixel as the sole background labeled pixel in Image. What will be the edge weights between the source and the pixels, and what will be the edge weights between the sink and the pixels? Give your answer as two edge weight matrices, one for the source and another for the sink. Use the histogram-based approach. 
+Q2) What will be the 8 weights of the edges that the central pixel in the image will form with its 8 neighbors in Image 1?
+Q3) Let's say the data given is that of foreground labeled pixels. Make 2 clusters. What are the means, covariance matrices, and weights of the two GMM components thus formed? 

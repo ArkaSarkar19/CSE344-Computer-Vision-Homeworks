@@ -1,0 +1,3 @@
+Please find max flow and min cut in the attached graph.
+
+Note: No need to type your answers. You can do it on paper and send the photos in a single pdf file, but do highlight your answers at the end.  
