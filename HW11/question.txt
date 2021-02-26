@@ -1,0 +1,2 @@
+1) Obtain SLIC superpixels for the attached image using some pre-defined library function or some online code that might be available. [0.25]
+2) Generate superpixel-based saliency map using the [sum of (color_distance)*exp(-spatial_distance)] formula for the attached image, as done earlier but on superpixels this time. Location of the superpixel will be the centre of the superpixel, and the color of the superpixel will be the average color of the pixels in the superpixel. [0.75]
