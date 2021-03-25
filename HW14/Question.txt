@@ -1,0 +1,5 @@
+Answer any one (1) of the following:
+
+1) Write code to show the edge map generated using Prewitt filter for any image. Don't use any pre-defined functions except to read/write.
+
+2) Prove that the two line models discussed in the class are equivalent.(Note: In the polar one, y-positive is upwards only, as usual).
