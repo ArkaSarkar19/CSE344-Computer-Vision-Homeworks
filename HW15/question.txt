@@ -1,0 +1,13 @@
+Try to make some changes in the LeNet architecture such that its test performance increases on MNIST dataset. You can use python/matlab libraries. You can consider changing the following:
+i) Filter size
+ii) Stride
+iii) Pooling technique. For example, you can try pooling by computing the "determinant" value.
+iv) Activation function. For example, you can try out some new activation functions like "x*sigmoid(x)".
+v) Number of layers
+vi) Number of filters
+
+Please compare the performance of your modified LeNet and the original one. Clearly state what are your modifications.
+
+Motivation behind this homework: To let you play with a CNN.
+
+Put everything in a single "pdf" file and submit. If you submit anything in any other format, 0.25 marks will be deducted straight away.
