@@ -1,0 +1,5 @@
+Answer and one (1) of the following:
+
+Q) Differentiate between Multi-class classification and Multi-label classification.
+Q) Describe AlexNet architecture in your own words.
+Q) Describe VGG architecture in your own words.
