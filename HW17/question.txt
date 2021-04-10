@@ -1,0 +1,4 @@
+Answer any (1) of the following:
+
+Q) Compute updated w6 in the example discussed in the class.
+Q) Verify whether w5 in the example (discussed in the class) got updated correctly according to back-propagation equations.
